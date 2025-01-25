@@ -1,0 +1,17 @@
+.hero-container{
+    background-color: rgb(178, 39, 39);
+    display: flex; 
+    justify-content: space-between; 
+    align-items: flex-start; 
+    padding-left: 14px;
+    padding-right: 14px;
+}
+.category{
+ display: flex;
+ gap: 50px;
+}
+
+#tag{
+    text-decoration: none;
+    color: rgb(231, 255, 236);
+}

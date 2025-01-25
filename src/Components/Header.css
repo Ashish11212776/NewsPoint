@@ -7,4 +7,10 @@
     display: flex;
     align-content: center;
     background-color: rgb(37, 35, 35);
+    font-size: small;
+    height: 50px;
+    width: 100%;
+    color: rgb(218, 174, 116);
+    padding-left: 14px;
+    padding-top: 10px;
 }
