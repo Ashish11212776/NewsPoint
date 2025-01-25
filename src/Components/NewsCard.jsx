@@ -3,7 +3,7 @@ import "./NewsCard.css";
 
 const NewsCard = ({ newsData }) => {
   return (
-    <>
+    <div className="main">
       {newsData && newsData.map((news, index) => (
         <div key={index} className="news-card">
           {/* Image Section */}
@@ -19,11 +19,11 @@ const NewsCard = ({ newsData }) => {
               {news.title || "Default Title"}
             </h1>
             <p className="news-category">Categories: {news.categories?.join(", ") || "General"}</p>
-            <p className="news-locale">Locale: {news.locale || "Unknown"}</p>
+            <p className="news-locale">{news.published_at || "Unknown"}</p>
           </div>
         </div>
       ))}
-    </>
+    </div>
   );
 };
 
