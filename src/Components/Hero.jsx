@@ -1,17 +1,11 @@
 import './Hero.css'
 import NewsCard from './NewsCard.jsx';
 const Hero=()=>{
-    const category=["Home","Trending","Favraute","Latest","About"]
+    
   return (
     <>
     <div className="hero-container">
-        <div className="category">
-            {
-               category.map((item,index)=>(
-                  <a key={index} id='tag' href="#">{item}</a>
-              ))
-            }
-        </div>
+       <h1>welcome to the newsPoint! We are ensure that you aware to the world events.</h1>
     </div>
      
     </>

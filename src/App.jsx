@@ -9,7 +9,7 @@ function App() {
   useEffect(() => {
     const fetchNewsData = async () => {
       try {
-       const response = await axios.get("https://api.thenewsapi.com/v1/news/top?api_token=5le45unAd3gsS4lLT8VzoSmrXjHh0LnadDd1tEhF&locale=us&limit=15");
+      //  const response = await axios.get("https://api.thenewsapi.com/v1/news/top?api_token=5le45unAd3gsS4lLT8VzoSmrXjHh0LnadDd1tEhF&locale=us&limit=15");
        setNewsData(response.data.data); 
       } catch (error) {
         console.error("API Error:", error);

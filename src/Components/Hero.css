@@ -6,9 +6,8 @@
     padding-left: 14px;
     padding-right: 14px;
 }
-.category{
- display: flex;
- gap: 50px;
+.hero-container >h1{
+    font-size: medium;
 }
 
 #tag{

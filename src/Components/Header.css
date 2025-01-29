@@ -7,10 +7,21 @@
     display: flex;
     align-content: center;
     background-color: rgb(37, 35, 35);
-    font-size: small;
+    font-size: medium;
     height: 50px;
     width: 100%;
     color: rgb(218, 174, 116);
     padding-left: 14px;
     padding-top: 10px;
+    gap: 47%;
+}
+.header-points{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+}
+.header-points >a{
+    text-decoration: none;
+    color: rgb(248, 244, 238);
 }
