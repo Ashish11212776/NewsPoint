@@ -36,6 +36,10 @@ function reducer(state, action) {
   switch (action.type) {
     case "ADD_NEWS":
       return [...state, action.newData];
+    case "DELETE":
+      return state.fillter();
+      case "EDIT":
+      return state.fillter();
     default:
       return state;
   }
