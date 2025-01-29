@@ -11,6 +11,7 @@ const AddNews = ({ dispatch }) => {
 
 
     const newNewsItem = {
+      id,
       title,
       description,
       image_url: imageUrl,

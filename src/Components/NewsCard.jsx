@@ -2,9 +2,14 @@ import React from "react";
 import "./NewsCard.css";
 
 const NewsCard = ({ newsData }) => {
+
+  const handleClick=(e)=>{
+       dispatch({ type: "DELETE", newData:  });
+  }
   return (
     <div className="main">
       {newsData && newsData.map((news, index) => (
+      
         <div key={index} className="news-card">
           {/* Image Section */}
           <img
@@ -20,6 +25,9 @@ const NewsCard = ({ newsData }) => {
             </h1>
             <p className="news-category">Categories: {news.categories?.join(", ") || "General"}</p>
             <p className="news-locale">{news.published_at || "Unknown"}</p>
+            <div className="btns">
+            <button className="delete" value={"DELETE"} onClick={(e)=>handleClick(e)}>Delete</button>
+             <button className="edit" value={"EDIT"} onClick={(e)=>handleClick(e)}>Edit</button></div>
           </div>
         </div>
       ))}
