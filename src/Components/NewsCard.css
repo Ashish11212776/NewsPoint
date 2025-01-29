@@ -1,8 +1,8 @@
 .main {
   display: flex;
   gap: 0.3rem;
-  flex-wrap: wrap; /* Allows items to wrap to the next row */
-  justify-content: space-between; /* Ensures even spacing between columns */
+  flex-wrap: wrap; 
+  justify-content: space-between; 
 }
 
 .main > * {
@@ -15,7 +15,7 @@
 .news-card {
     position: relative;
     width: 24rem;
-    height: 16rem;
+    height: 29rem;
     overflow: hidden;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }

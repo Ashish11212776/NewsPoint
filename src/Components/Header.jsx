@@ -1,26 +1,25 @@
-import { NavLink } from "react-router";
+import { NavLink } from "react-router-dom";
 import "./Header.css";
-const Header = () => {
-  const category = ["Home", "About", "Add News", "Trending", "Login"];
-  return (
-    <>
-      <div className="main">
-        <div className="header">
-          <h1>NewsPoint</h1>
 
-          <div className="header-points">
-            {category.map((item, index) => {
-              const url = `/${item.toLowerCase()}`; 
-              return (
-                <NavLink to={url} key={index} activeClassName="active">
-                  {item}
-                </NavLink>
-              );
-            })}
-          </div>
-        </div>
-      </div>
-    </>
+const categories = [
+  { name: "Home", path: "/" },
+  { name: "About", path: "/about" },
+  { name: "Add News", path: "/add-news" },
+  { name: "Trending", path: "/trending" },
+  { name: "Login", path: "/login" }
+];
+
+const Header = () => {
+  return (
+    <header className="header">
+      <h1 className="logo">NewsPoint</h1>
+      <nav className="nav-links">
+        {categories.map((item, index) => (
+          <NavLink to={item.path} key={index}>{item.name}</NavLink>
+        ))}
+      </nav>
+    </header>
   );
 };
+
 export default Header;

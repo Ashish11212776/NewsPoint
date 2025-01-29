@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  flex: 2;
+  height: 100vh; 
+}
+
+.main {
+  flex: 1;
+  background-image: url(../assets/newsimage.jpg);
+  background-size: cover;
+  
+}
+
+.authpage {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid red;
+}
+
+.auth-card {
+  width: 300px;
+  padding: 20px;
+  background: white;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}

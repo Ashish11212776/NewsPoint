@@ -1,29 +1,60 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
 import Header from "./Components/Header";
-import Hero from "./Components/Hero.jsx";
-import NewsCard from "./Components/NewsCard.jsx";
+import Hero from "./Components/Hero";
+import NewsCard from "./Components/NewsCard";
+import { Routes, Route } from "react-router-dom";
+import { useReducer } from "react";
+import Login from "./Components/Login";
+import AddNews from "./Components/AddNews";
+
+const allData = [
+  {
+    image_url:
+      "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ie6ukfHHcZUw/v1/1200x800.jpg",
+    description: "News 1",
+    title: "News Title 1",
+  },
+  {
+    image_url: "./assets/newsimage.jpg",
+    description: "News 2",
+    title: "News Title 2",
+  },
+  {
+    image_url:
+      "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ie6ukfHHcZUw/v1/1200x800.jpg",
+    description: "News 1",
+    title: "News Title 1",
+  },
+  {
+    image_url:
+      "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ie6ukfHHcZUw/v1/1200x800.jpg",
+    description: "News 1",
+    title: "News Title 1",
+  },
+];
+
+function reducer(state, action) {
+  switch (action.type) {
+    case "ADD_NEWS":
+      return [...state, action.newData];
+    default:
+      return state;
+  }
+}
+
 function App() {
- const [newsData, setNewsData] = useState(null);
-
-  useEffect(() => {
-    const fetchNewsData = async () => {
-      try {
-      //  const response = await axios.get("https://api.thenewsapi.com/v1/news/top?api_token=5le45unAd3gsS4lLT8VzoSmrXjHh0LnadDd1tEhF&locale=us&limit=15");
-       setNewsData(response.data.data); 
-      } catch (error) {
-        console.error("API Error:", error);
-      }
-    };
-
-    fetchNewsData(); 
-  }, []); 
+  const [newsData, dispatch] = useReducer(reducer, allData);
 
   return (
     <>
-     <Header/>
-     <Hero/>
-     {newsData && <NewsCard newsData={newsData} />}
+      <Header />
+      <Routes>
+        <Route path="/" element={
+          <>
+          <Hero /> <NewsCard newsData={newsData} />
+          </>} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/add-news" element={<AddNews dispatch={dispatch} />} />
+      </Routes>
     </>
   );
 }

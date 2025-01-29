@@ -1,17 +1,12 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import { BrowserRouter, Routes, Route  } from "react-router";
-import App from './App.jsx'
-import Login from './Components/Login.jsx';
+import { StrictMode } from 'react';
+import { createRoot,Routes, Route } from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom'; // ✅ FIXED IMPORT
+import App from './App';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<App />} />
-      <Route path="authentication" element={<Login />} />
-    </Routes>
+       <App/>
     </BrowserRouter>
-  </StrictMode>,
-)
-// https://api.thenewsapi.com/v1/news/top?api_token=5le45unAd3gsS4lLT8VzoSmrXjHh0LnadDd1tEhF&locale=us&limit=3
+  </StrictMode>
+);
