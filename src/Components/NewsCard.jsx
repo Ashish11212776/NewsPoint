@@ -1,10 +1,10 @@
 import React from "react";
 import "./NewsCard.css";
 
-const NewsCard = ({ newsData }) => {
+const NewsCard = ({ newsData,dispatch}) => {
 
-  const handleClick=(e)=>{
-       dispatch({ type: "DELETE", newData:  });
+  const handleClick=(e,id)=>{
+       dispatch({ type:e.target.value,newData:newsData,id });
   }
   return (
     <div className="main">
@@ -26,7 +26,7 @@ const NewsCard = ({ newsData }) => {
             <p className="news-category">Categories: {news.categories?.join(", ") || "General"}</p>
             <p className="news-locale">{news.published_at || "Unknown"}</p>
             <div className="btns">
-            <button className="delete" value={"DELETE"} onClick={(e)=>handleClick(e)}>Delete</button>
+            <button className="delete" value={"DELETE"} onClick={(e)=>handleClick(e,news.id)}>Delete</button>
              <button className="edit" value={"EDIT"} onClick={(e)=>handleClick(e)}>Edit</button></div>
           </div>
         </div>

@@ -5,6 +5,7 @@ const AddNews = ({ dispatch }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [imageUrl, setImageUrl] = useState("");
+  const [id,setid]=useState(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -16,7 +17,7 @@ const AddNews = ({ dispatch }) => {
       description,
       image_url: imageUrl,
     };
-
+ 
     dispatch({ type: "ADD_NEWS", newData: newNewsItem });
 
     setTitle("");
