@@ -1,7 +1,9 @@
-import React from 'react'
+import  { useContext } from 'react'
 import { useState } from "react";
+import { mycontext } from '../App';
 
-const AddNews = ({ dispatch }) => {
+const AddNews = () => {
+  const {dispatch}=useContext(mycontext);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [imageUrl, setImageUrl] = useState("");
@@ -18,7 +20,7 @@ const AddNews = ({ dispatch }) => {
       image_url: imageUrl,
     };
  
-    dispatch({ type: "ADD_NEWS", newData: newNewsItem });
+    dispatch({ type: "ADD_NEWS",  payload: newNewsItem  });
 
     setTitle("");
     setDescription("");

@@ -1,14 +1,16 @@
-import React from "react";
+import { useContext } from "react";
 import "./NewsCard.css";
+import { mycontext } from "../App";
 
-const NewsCard = ({ newsData,dispatch}) => {
-
+const NewsCard = () => {
+ 
+   const {state,dispatch}=useContext(mycontext);
   const handleClick=(e,id)=>{
-       dispatch({ type:e.target.value,newData:newsData,id });
+       dispatch({ type:e.target.value, payload:id });
   }
   return (
     <div className="main">
-      {newsData && newsData.map((news, index) => (
+      { state.map((news, index) => (
       
         <div key={index} className="news-card">
           {/* Image Section */}

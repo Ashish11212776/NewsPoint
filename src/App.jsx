@@ -2,9 +2,11 @@ import Header from "./Components/Header";
 import Hero from "./Components/Hero";
 import NewsCard from "./Components/NewsCard";
 import { Routes, Route } from "react-router-dom";
-import { useReducer } from "react";
+import { createContext, useReducer } from "react";
 import Login from "./Components/Login";
 import AddNews from "./Components/AddNews";
+
+export const mycontext= createContext();
 
 const allData = [
   {
@@ -39,9 +41,10 @@ const allData = [
 function reducer(state, action) {
   switch (action.type) {
     case "ADD_NEWS":
-      return [...state, action.newData];
+      console.log(action.payload)
+      return [...state, action.payload];
     case "DELETE":
-      return state.filter((item)=>(item.id!==action.id));
+      return state.filter((item)=>(item.id!==action.payload));
     case "EDIT":
       return state.fillter();
     default:
@@ -50,10 +53,11 @@ function reducer(state, action) {
 }
 
 function App() {
-  const [newsData, dispatch] = useReducer(reducer, allData);
+  const [state, dispatch] = useReducer(reducer, allData);
 
   return (
     <>
+    <mycontext.Provider value={{dispatch,state}}>
       <Header />
       <Routes>
         <Route
@@ -61,13 +65,14 @@ function App() {
           element={
             <>
               <Hero />
-              <NewsCard newsData={newsData} dispatch={dispatch} />
+              <NewsCard newsData={state} dispatch={dispatch} />
             </>
           }
         />
         <Route path="/login" element={<Login />} />
-        <Route path="/add-news" element={<AddNews dispatch={dispatch} />} />
+        <Route path="/add-news" element={<AddNews />} />
       </Routes>
+      </mycontext.Provider>
     </>
   );
 }
