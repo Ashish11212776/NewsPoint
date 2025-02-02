@@ -1,12 +1,14 @@
-import { useContext } from "react";
+
 import "./NewsCard.css";
-import { mycontext } from "../App";
+import { useSelector,useDispatch } from "react-redux";
+import { initialState,DELETE } from "../feacture/crudSlice";
 
 const NewsCard = () => {
- 
-   const {state,dispatch}=useContext(mycontext);
+  const state= useSelector((state) => state.crudSliceReducer);
+  const dispatch=useDispatch();
+   
   const handleClick=(e,id)=>{
-       dispatch({ type:e.target.value, payload:id });
+       dispatch(DELETE(id));
   }
   return (
     <div className="main">

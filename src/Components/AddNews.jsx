@@ -1,13 +1,14 @@
 import  { useContext } from 'react'
 import { useState } from "react";
-import { mycontext } from '../App';
+import { ADD_NEWS } from '../feacture/crudSlice';
+import { useDispatch } from 'react-redux';
 
 const AddNews = () => {
-  const {dispatch}=useContext(mycontext);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [id,setid]=useState(null);
+  const dispatch=useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,7 +21,7 @@ const AddNews = () => {
       image_url: imageUrl,
     };
  
-    dispatch({ type: "ADD_NEWS",  payload: newNewsItem  });
+    dispatch(ADD_NEWS(newNewsItem));
 
     setTitle("");
     setDescription("");
