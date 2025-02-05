@@ -2,11 +2,12 @@ import Header from "./Components/Header";
 import Hero from "./Components/Hero";
 import NewsCard from "./Components/NewsCard";
 import { Routes, Route } from "react-router-dom";
-import { createContext, useReducer } from "react";
 import Login from "./Components/Login";
 import AddNews from "./Components/AddNews";
-
-
+import EditNews from "./Components/EditNews";
+import { fData } from "./feacture/featchDataThunk";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
 
 
 
@@ -25,8 +26,10 @@ import AddNews from "./Components/AddNews";
 // }
 
 function App() {
-  // const [state, dispatch] = useReducer(reducer, allData);
-
+   const dispatch=useDispatch();
+  useEffect(() => {
+    dispatch(fData()); // Dispatch the thunk to fetch the data
+  }, [dispatch]);
   return (
     <>
     
@@ -43,6 +46,7 @@ function App() {
         />
         <Route path="/login" element={<Login />} />
         <Route path="/add-news" element={<AddNews />} />
+        <Route path="/edit" element={<EditNews/>}/>
       </Routes>
     </>
   );

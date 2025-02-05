@@ -1,49 +1,50 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { fData } from "./featchDataThunk";
 
-export const initialState = [
-    {
-      id: "1",
-      image_url:
-        "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ie6ukfHHcZUw/v1/1200x800.jpg",
-      description: "News 1",
-      title: "News Title 1",
+export const initialState = {
+  Data: [],
+  isLoading: false,
+};
+
+export const crudSlice = createSlice({
+  name: "blogChanges",
+  initialState,
+  reducers: {
+    ADD_NEWS: (state, action) => {
+      state.Data.push(action.payload);
     },
-    {
-      id: "2",
-      image_url: "./assets/newsimage.jpg",
-      description: "News 2",
-      title: "News Title 2",
+    DELETE: (state, action) => {
+      const index = state.Data.findIndex((item) => item.id === action.payload);
+      if (index !== -1) {
+        state.Data.splice(index, 1);
+      }
     },
-    {
-      id: "3",
-      image_url:
-        "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ie6ukfHHcZUw/v1/1200x800.jpg",
-      description: "News 1",
-      title: "News Title 1",
+    EDIT: (state, action) => {
+      const index = state.Data.findIndex(
+        (item) => item.id === action.payload.id
+      );
+      if (index !== -1) {
+        state.Data[index] = action.payload;
+      }
     },
-    {
-      id: "4",
-      image_url:
-        "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ie6ukfHHcZUw/v1/1200x800.jpg",
-      description: "News 1",
-      title: "News Title 1",
-    },
-  ];
-export const crudSlice=createSlice({
-    name:'blogChanges',
-    initialState,
-    reducers:{
-        ADD_NEWS: (state,action)=>{
-           state.push(action.payload);
-        },
-        DELETE: (state, action) => {
-          console.log(action.payload);
-          const index = state.findIndex(item => item.id === action.payload);
-          if (index !== -1) {
-            state.splice(index, 1); 
-          }
-        }
-    },
- })
- export const {ADD_NEWS,DELETE}=crudSlice.actions
- export default crudSlice.reducer
+  },
+  // **Move extraReducers out of reducers** - they should be at this level
+  extraReducers: (builder) => {
+    builder.addCase(fData.pending, (state) => {
+      console.log("Fetching data...");
+      state.isLoading = true;
+    });
+    builder.addCase(fData.fulfilled, (state, action) => {
+      console.log("Data fetched:", action.payload);
+      state.Data = action.payload;
+      state.isLoading = false;
+    });
+    builder.addCase(fData.rejected, (state, action) => {
+      console.log("Error fetching data:", action.error);
+      state.isLoading = false;
+    });
+  },
+});
+
+export const { ADD_NEWS, DELETE, EDIT } = crudSlice.actions;
+export default crudSlice.reducer;
